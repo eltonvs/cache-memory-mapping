@@ -6,6 +6,9 @@
  *  File with the Cache Memory Class
  */
 
+#ifndef _cache_hpp_
+#define _cache_hpp_
+
 #include <vector>
 
 class Cache {
@@ -46,3 +49,5 @@ class Cache {
     unsigned m_size;            //<! The Cache's size
     std::vector<int> m_memory;  //<! The Cache Memory (a vector of integers)
 };
+
+#endif

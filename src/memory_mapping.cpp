@@ -12,6 +12,7 @@
  */
 
 #include <iostream>
+#include "mapping_simulator.hpp"
 
 int main(int argc, char const *argv[]) {
     // Code Here

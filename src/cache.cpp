@@ -3,7 +3,7 @@
  *  @brief Cache Memory Implementations
  *  @copyright Copyright &copy; 2016. All rights reserved.
  *
- *  File with Cache Memory Class implementation
+ *  File with the Cache Memory Class implementation
  */
 
 #include <iostream>
