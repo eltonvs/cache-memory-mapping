@@ -11,15 +11,15 @@
 #include "cache.hpp"
 
 // Constructor
-Cache::Cache(unsigned _sz) : m_size(_sz), m_memory(_sz, -1) {}
+Cache::Cache(unsigned _sz) : m_size(_sz), m_memory(_sz, "-") {}
 
 // Destructor
 Cache::~Cache() {}
 
 // Gets the cache value in a position
-bool Cache::getValue(unsigned _pos, int &_val) const {
+bool Cache::getValue(unsigned _pos, std::string &_val) const {
     // Verify if the _pos is invalid or if isn't filled
-    if (_pos >= m_size || m_memory[_pos] == -1)
+    if (_pos >= m_size || m_memory[_pos] == "-")
         return false;
 
     _val = m_memory[_pos];
@@ -27,7 +27,7 @@ bool Cache::getValue(unsigned _pos, int &_val) const {
 }
 
 // Sets a value in a cache position
-bool Cache::setValue(unsigned _pos, int _val) {
+bool Cache::setValue(unsigned _pos, std::string _val) {
     // Verify if the _pos is invalid
     if (_pos >= m_size)
         return false;
@@ -39,12 +39,6 @@ bool Cache::setValue(unsigned _pos, int _val) {
 // Show the Cache Memory
 void Cache::show() const {
     std::cout << "[ ";
-    for (auto it = m_memory.begin(); it != m_memory.end(); it++) {
-        if (*it == -1)
-            std::cout << "-";
-        else
-            std::cout << std::hex << std::showbase
-                      << *it << std::dec << std::noshowbase;
-        std::cout << (it + 1 == m_memory.end() ? " ]\n" : " | ");
-    }
+    for (auto it = m_memory.begin(); it != m_memory.end(); it++)
+        std::cout << *it << (it + 1 == m_memory.end() ? " ]\n" : " | ");
 }

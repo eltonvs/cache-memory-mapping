@@ -10,6 +10,7 @@
 #define _cache_hpp_
 
 #include <vector>
+#include <string>
 
 class Cache {
  public:
@@ -30,7 +31,7 @@ class Cache {
      * @param _val The variable to receive the value (by reference)
      * @return True if is filled, False otherwise
      */
-    bool getValue(unsigned _pos, int &_val) const;
+    bool getValue(unsigned _pos, std::string &_val) const;
 
     /**
      * @brief Sets a value in a Cache's position
@@ -38,7 +39,7 @@ class Cache {
      * @param _val The value to be inserted
      * @return True if the value was successfully setted, False if not
      */
-    bool setValue(unsigned _pos, int _val);
+    bool setValue(unsigned _pos, std::string _val);
 
     /**
      * @brief Shows the Cache content
@@ -46,8 +47,8 @@ class Cache {
     void show() const;
 
  private:
-    unsigned m_size;            //<! The Cache's size
-    std::vector<int> m_memory;  //<! The Cache Memory (a vector of integers)
+    unsigned m_size;                    //<! The Cache's size
+    std::vector<std::string> m_memory;  //<! The Memory (a vector of strings)
 };
 
 #endif
