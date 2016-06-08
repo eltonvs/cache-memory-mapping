@@ -21,15 +21,16 @@ MappingSimulator::~MappingSimulator() {}
 // Function to access a value on Cache
 void MappingSimulator::access(std::string _val) {
     m_access_cnt++;
+    unsigned pos;
 
-    if (search_val(m_current_map, _val) == -1) {
+    if (search_val(m_current_map, _val, pos) == -1) {
         std::cout << "Miss" << std::endl;
 
         m_miss_cnt++;
 
-        //
         // Add element to cache
-        //
+        std::cout << "The element will be inserted on: " << pos << std::endl;
+        m_cache.setValue(pos, _val);
 
         // If the current miss rate pass the limit, switch the associativity
         if (static_cast<double>(m_miss_cnt)/m_access_cnt > m_max_miss_rate)
@@ -39,14 +40,20 @@ void MappingSimulator::access(std::string _val) {
 
     std::cout << "Hit" << std::endl;
 }
+// Shows the Cache on screen
+void MappingSimulator::show() const {
+    m_cache.show();
+}
 
 // Search for a value on cache
-int MappingSimulator::search_val(unsigned _m, std::string _val) const {
+int MappingSimulator::search_val(unsigned _m, std::string _val, unsigned &_lpos) const {
+    bool changed    = false;
     int dec_val     = strtol(_val.c_str(), NULL, 16);
     std::string aux = "-";
     unsigned b_val  = dec_val % m_cache.getSize();
     unsigned ini    = (dec_val % 4) * (m_cache.getSize()/4);
     unsigned end    = ini + (m_cache.getSize()/4);
+    unsigned i      = 0;
 
     switch (_m % 3) {
         // Direct
@@ -54,25 +61,35 @@ int MappingSimulator::search_val(unsigned _m, std::string _val) const {
             std::cout << ">>> Direct" << std::endl;
             if (m_cache.getValue(b_val, aux) && aux == _val)
                 return b_val;
+            _lpos = b_val, changed = true;
             break;
         // Partially Associative
         case 1:
             std::cout << ">>> Partially" << std::endl;
-            while (ini < end) {
-                if (m_cache.getValue(ini, aux) && aux == _val)
+            i = ini;
+            while (i < end) {
+                if (m_cache.getValue(i, aux) && aux == _val)
                     return b_val;
-                ini++;
+                if (!changed && aux == "-")
+                    _lpos = i, changed = true;
+                i++;
             }
+            if (!changed)
+                _lpos = ini + (m_access_cnt % (m_cache.getSize()/4)), changed = true;
             break;
         // Totally Associative
         case 2:
             std::cout << ">>> Totally" << std::endl;
-            auto i(0u);
+            i = 0;
             while (i < m_cache.getSize()) {
                 if (m_cache.getValue(i, aux) && aux == _val)
                     return i;
+                if (!changed && aux == "-")
+                    _lpos = i, changed = true;
                 i++;
             }
+            if (!changed)
+                _lpos = m_access_cnt % m_cache.getSize(), changed = true;
             break;
     }
 

@@ -32,14 +32,20 @@ class MappingSimulator {
      */
     void access(std::string _val);
 
+    /**
+     * @brief Shows the Cache on console (using the default method)
+     */
+    void show() const;
+
  private:
     /**
      * @brief Function to search a value on Cache
      * @param _m The type of mapping to be used
      * @param _val To value to be searched
+     * @param _lpos The last visited position (to insert the element on cache)
      * @return The position where the value is located
      */
-    int search_val(unsigned _m, std::string _val) const;
+    int search_val(unsigned _m, std::string _val, unsigned &_lpos) const;
 
     Cache m_cache;           //<! The Cache to be used
     double m_max_miss_rate;  //<! The maximum miss rate
