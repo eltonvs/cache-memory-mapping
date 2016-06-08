@@ -16,6 +16,11 @@ Cache::Cache(unsigned _sz) : m_size(_sz), m_memory(_sz, "-") {}
 // Destructor
 Cache::~Cache() {}
 
+// Gets the Cache's size
+unsigned Cache::getSize() const {
+    return m_size;
+}
+
 // Gets the cache value in a position
 bool Cache::getValue(unsigned _pos, std::string &_val) const {
     // Verify if the _pos is invalid or if isn't filled

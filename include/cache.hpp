@@ -26,6 +26,12 @@ class Cache {
     ~Cache();
 
     /**
+     * @brief Gets the Cache's size
+     * @return The Cache's size
+     */
+    unsigned getSize() const;
+
+    /**
      * @brief Gets the Cache's value at some position
      * @param _pos The position to look for
      * @param _val The variable to receive the value (by reference)

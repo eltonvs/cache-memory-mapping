@@ -9,6 +9,7 @@
 #ifndef _mapping_simulator_hpp_
 #define _mapping_simulator_hpp_
 
+#include <string>
 #include "cache.hpp"
 
 class MappingSimulator {
@@ -25,12 +26,26 @@ class MappingSimulator {
      */
     ~MappingSimulator();
 
+    /**
+     * @brief Function to access a value into the cache
+     * @param _val The value to be accessed
+     */
+    void access(std::string _val);
+
  private:
-    Cache m_cache;              //<! The Cache to be used
-    double m_max_miss_rate;     //<! The maximum miss rate
-    unsigned m_miss_counter;    //<! The miss counter
-    unsigned m_access_counter;  //<! The access counter
-    unsigned m_current_map;     //<! The current mapping function to be used
+    /**
+     * @brief Function to search a value on Cache
+     * @param _m The type of mapping to be used
+     * @param _val To value to be searched
+     * @return The position where the value is located
+     */
+    int search_val(unsigned _m, std::string _val) const;
+
+    Cache m_cache;           //<! The Cache to be used
+    double m_max_miss_rate;  //<! The maximum miss rate
+    unsigned m_miss_cnt;     //<! The miss counter
+    unsigned m_access_cnt;   //<! The access counter
+    unsigned m_current_map;  //<! The current mapping function to be used
 };
 
 #endif

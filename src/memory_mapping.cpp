@@ -15,7 +15,16 @@
 #include "mapping_simulator.hpp"
 
 int main(int argc, char const *argv[]) {
-    // Code Here
+    auto cache_sz = 16u;
+    auto max_miss = 0.5;
+    std::string n = "0xFF";
+
+    MappingSimulator map(cache_sz, max_miss);
+
+    // Testing
+    map.access(n);
+    map.access(n);
+    map.access(n);
 
     std::cout << "Exiting with Success...\n";
 
