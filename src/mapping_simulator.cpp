@@ -22,22 +22,24 @@ MappingSimulator::~MappingSimulator() {}
 void MappingSimulator::access(std::string _val) {
     m_access_cnt++;
     unsigned pos;
+    double miss_rate = static_cast<double>(m_miss_cnt)/m_access_cnt;
 
     if (search_val(m_current_map, _val, pos) == -1) {
-        std::cout << "[Miss]" << std::endl;
-
         m_miss_cnt++;
+        miss_rate = static_cast<double>(m_miss_cnt)/m_access_cnt;
+
+        std::cout << "[Miss] - Miss rate: " << miss_rate * 100 << '%' << std::endl;
 
         // Add element to cache
         m_cache.setValue(pos, _val);
 
         // If the current miss rate pass the limit, switch the associativity
-        if (static_cast<double>(m_miss_cnt)/m_access_cnt > m_max_miss_rate)
+        if (miss_rate > m_max_miss_rate)
             m_current_map++, m_miss_cnt = 0, m_access_cnt = 0;
         return;
     }
 
-    std::cout << "[Hit]" << std::endl;
+    std::cout << "[Hit] - Miss rate: " << miss_rate * 100 << '%' << std::endl;
 }
 // Shows the Cache on screen
 void MappingSimulator::show() const {

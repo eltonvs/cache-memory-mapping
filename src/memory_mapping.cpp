@@ -79,7 +79,7 @@ int main(int argc, char const *argv[]) {
         }
 
         // Separator line
-        std::cout << "\n" << std::string(60, '-') << "\n";
+        std::cout << "\n" << std::string(80, '-') << "\n";
     }
 
     std::cout << "\n\nExiting with Success...\n";
