@@ -54,6 +54,9 @@ int MappingSimulator::search_val(unsigned _m, std::string _val, unsigned &_lpos)
     unsigned end    = ini + (m_cache.getSize()/4);
     unsigned i      = 0;
 
+    if (m_cache.getSize() % 4 != 0)
+        end += (dec_val % 4 == 3) ? (m_cache.getSize() % 4) : 0;
+
     switch (_m % 3) {
         // Direct
         case 0:
