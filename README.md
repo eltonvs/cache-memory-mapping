@@ -21,7 +21,7 @@ E para executá-lo:
 ./bin/memory_mapping arquivo_com_endereços taxa_maxima_de_miss [tamanho_da_cache]
 ```
 
-Onde o `arquivo_com_endereços` representa um arquivo com todos os endereços a serem buscados pelo programa (um por linha), a `taxa_maxima_de_miss` é o percentual (em ponto flutuate) que definirá a troca do tipo de mapeamento e o `tamanho_da_cache` é um parâmetro opcional para definir o tamanho da memória cache, caso não seja informado, ele assumirá um valor padrão de 16 posições.
+Onde o `arquivo_com_endereços` representa um arquivo com todos os endereços a serem buscados pelo programa (um por linha), a `taxa_maxima_de_miss` é o percentual (em ponto flutuate) que definirá a troca do tipo de mapeamento e o `tamanho_da_cache` é um parâmetro opcional para definir o tamanho da memória cache (no mínimo 4 posições), caso não seja informado, ele assumirá um valor padrão de 16 posições.
 
 ### Exemplo de um arquivo de entrada válido
 >input.dat

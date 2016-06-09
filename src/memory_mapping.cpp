@@ -31,6 +31,9 @@ int main(int argc, char const *argv[]) {
         // Input 3: cache_sz
         if (argc > 3)
             cache_sz = std::stoul(argv[3]);
+        // Verify if the cache's size is a valid size
+        if (cache_sz < 4)
+            cache_sz = 4;
 
         // Open the file
         std::ifstream file(input_file);
