@@ -18,46 +18,68 @@
 #include "mapping_simulator.hpp"
 
 int main(int argc, char const *argv[]) {
-    auto cache_sz = 0u;
+    auto cache_sz = 16u;
     auto max_miss = 1.0;
-    int choice = 0;
+    int choice    = 0;
     std::vector<std::string> addresses;
 
-    if (argc > 1) {
+    if (argc > 2) {
+        // Input 1: File
         std::string input_file = argv[1];
-        std::ifstream file(input_file);
+        // Input 2: miss rate
+        max_miss = std::stof(argv[2]);
+        // Input 3: cache_sz
+        if (argc > 3)
+            cache_sz = std::stoul(argv[3]);
 
+        // Open the file
+        std::ifstream file(input_file);
+        // Verify if the file was successfully opened
         if (!file.is_open()) {
             std::cerr << "The file specified doens't exists" << std::endl;
             return EXIT_FAILURE;
         }
 
-        file >> cache_sz;
-        file >> max_miss;
         std::string line;
+        // Copy the file addesses to a vector of strings
         while (std::getline(file, line))
-            if (line != "") addresses.push_back(line);
+            if (line != "")
+                addresses.push_back(line);
     } else {
-        std::cerr << "No input file specified" << std::endl;
+        std::cerr << "Missing parameters" << std::endl;
         return EXIT_FAILURE;
     }
 
+    // Initializes the MappingSimulator class
     MappingSimulator map(cache_sz, max_miss);
 
+    std::cout << std::string(30, '-') << "\n";
+    std::cout << "Memory Mapping Simulator" << "\n";
+    std::cout << "  >>> Maximum miss rate: " << max_miss * 100 << '%' << "\n";
+    std::cout << "  >>> Cache's size: " << cache_sz << "\n";
+    std::cout << std::string(30, '-') << "\n\n";
+
+    // For each address in addresses, try to access him
     for (auto address : addresses) {
         std::cout << "Accessing the element " << address << std::endl;
-        std::cout << "Using: ";
+        std::cout << "Using ";
         map.access(address);
+
+        // Show the current cache status on terminal
         do {
-            std::cout << "Show the current cache content? [1 - Yes | 0 - No] ";
+            std::cout << ">>> Show the current cache content? [1-Yes | 0-No] ";
             std::cin >> choice;
         } while (choice != 0 && choice != 1);
-        std::cout << std::endl << ">>> ";
-        if (choice == 1) map.show();
-        std::cout << std::endl;
+        if (choice == 1) {
+            std::cout << std::endl << ">>> ";
+            map.show();
+        }
+
+        // Separator line
+        std::cout << "\n" << std::string(60, '-') << "\n";
     }
 
-    std::cout << "Exiting with Success...\n";
+    std::cout << "\n\nExiting with Success...\n";
 
     return EXIT_SUCCESS;
 }
