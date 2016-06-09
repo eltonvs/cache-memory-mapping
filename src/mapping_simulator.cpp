@@ -66,7 +66,7 @@ int MappingSimulator::search_val(unsigned _m, std::string _val, unsigned &_lpos)
         // Partially Associative
         case 1:
             std::cout << ">>> Partially" << std::endl;
-            i = ini;
+            i = _lpos = ini;
             while (i < end) {
                 if (m_cache.getValue(i, aux) && aux == _val)
                     return b_val;
@@ -75,12 +75,11 @@ int MappingSimulator::search_val(unsigned _m, std::string _val, unsigned &_lpos)
                 i++;
             }
             if (!changed)
-                _lpos = ini + (m_access_cnt % (m_cache.getSize()/4)), changed = true;
+                _lpos += (m_access_cnt % (m_cache.getSize()/4)), changed = true;
             break;
         // Totally Associative
         case 2:
             std::cout << ">>> Totally" << std::endl;
-            i = 0;
             while (i < m_cache.getSize()) {
                 if (m_cache.getValue(i, aux) && aux == _val)
                     return i;

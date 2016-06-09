@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
         std::cout << "Accessing the element " << n[i] << std::endl;
         map.access(n[i]);
         do {
-            std::cout << "Do you wanna view the current cache content? [1 - Yes | 0 - No] ";
+            std::cout << "Show the current cache content? [1 - Yes | 0 - No] ";
             std::cin >> choice;
         } while (choice != 0 && choice != 1);
         if (choice == 1) map.show();

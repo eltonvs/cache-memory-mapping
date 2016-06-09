@@ -24,11 +24,11 @@ unsigned Cache::getSize() const {
 // Gets the cache value in a position
 bool Cache::getValue(unsigned _pos, std::string &_val) const {
     // Verify if the _pos is invalid or if isn't filled
-    if (_pos >= m_size || m_memory[_pos] == "-")
+    if (_pos >= m_size)
         return false;
 
     _val = m_memory[_pos];
-    return true;
+    return m_memory[_pos] != "-";
 }
 
 // Sets a value in a cache position
