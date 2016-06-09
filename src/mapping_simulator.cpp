@@ -24,12 +24,11 @@ void MappingSimulator::access(std::string _val) {
     unsigned pos;
 
     if (search_val(m_current_map, _val, pos) == -1) {
-        std::cout << "Miss" << std::endl;
+        std::cout << "[Miss]" << std::endl;
 
         m_miss_cnt++;
 
         // Add element to cache
-        std::cout << "The element will be inserted on: " << pos << std::endl;
         m_cache.setValue(pos, _val);
 
         // If the current miss rate pass the limit, switch the associativity
@@ -38,7 +37,7 @@ void MappingSimulator::access(std::string _val) {
         return;
     }
 
-    std::cout << "Hit" << std::endl;
+    std::cout << "[Hit]" << std::endl;
 }
 // Shows the Cache on screen
 void MappingSimulator::show() const {
@@ -58,14 +57,14 @@ int MappingSimulator::search_val(unsigned _m, std::string _val, unsigned &_lpos)
     switch (_m % 3) {
         // Direct
         case 0:
-            std::cout << ">>> Direct" << std::endl;
+            std::cout << "Direct Mapping ";
             if (m_cache.getValue(b_val, aux) && aux == _val)
                 return b_val;
             _lpos = b_val, changed = true;
             break;
         // Partially Associative
         case 1:
-            std::cout << ">>> Partially" << std::endl;
+            std::cout << "Partially Associative Mapping ";
             i = _lpos = ini;
             while (i < end) {
                 if (m_cache.getValue(i, aux) && aux == _val)
@@ -79,7 +78,7 @@ int MappingSimulator::search_val(unsigned _m, std::string _val, unsigned &_lpos)
             break;
         // Totally Associative
         case 2:
-            std::cout << ">>> Totally" << std::endl;
+            std::cout << "Totally Associative Mapping ";
             while (i < m_cache.getSize()) {
                 if (m_cache.getValue(i, aux) && aux == _val)
                     return i;
