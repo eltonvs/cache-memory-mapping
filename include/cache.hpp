@@ -12,6 +12,9 @@
 #include <vector>
 #include <string>
 
+/**
+ * @brief The Cache Class
+ */
 class Cache {
  public:
     /**
@@ -53,8 +56,8 @@ class Cache {
     void show() const;
 
  private:
-    unsigned m_size;                    //<! The Cache's size
-    std::vector<std::string> m_memory;  //<! The Memory (a vector of strings)
+    unsigned m_size;                    //!< The Cache's size
+    std::vector<std::string> m_memory;  //!< The Memory (a vector of strings)
 };
 
 #endif

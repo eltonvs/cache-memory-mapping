@@ -12,6 +12,9 @@
 #include <string>
 #include "cache.hpp"
 
+/**
+ * @brief The Mapping Simulator Class
+ */
 class MappingSimulator {
  public:
     /**
@@ -47,11 +50,11 @@ class MappingSimulator {
      */
     int search_val(unsigned _m, std::string _val, unsigned &_lpos) const;
 
-    Cache m_cache;           //<! The Cache to be used
-    double m_max_miss_rate;  //<! The maximum miss rate
-    unsigned m_miss_cnt;     //<! The miss counter
-    unsigned m_access_cnt;   //<! The access counter
-    unsigned m_current_map;  //<! The current mapping function to be used
+    Cache m_cache;           //!< The Cache to be used
+    double m_max_miss_rate;  //!< The maximum miss rate
+    unsigned m_miss_cnt;     //!< The miss counter
+    unsigned m_access_cnt;   //!< The access counter
+    unsigned m_current_map;  //!< The current mapping function to be used
 };
 
 #endif

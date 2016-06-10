@@ -17,6 +17,12 @@
 #include <vector>
 #include "mapping_simulator.hpp"
 
+/**
+ * @brief The main function thar runs the program
+ * @param argc The cli arguments counter
+ * @param argv The cli arguments values
+ * @return EXIT_SUCESS if all succeed, EXIT_FAILURE otherwise
+ */
 int main(int argc, char const *argv[]) {
     auto cache_sz = 16u;
     auto max_miss = 1.0;
