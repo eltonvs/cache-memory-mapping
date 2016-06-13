@@ -4,3 +4,8 @@ build/
 
 # Ignore compiled files
 bin/
+
+# Ignore compiled LaTeX files
+**/*.aux
+**/*.pdf
+**/*.log
