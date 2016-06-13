@@ -1,0 +1,158 @@
+\hypertarget{classCache}{}\section{Referência à classe Cache}
+\label{classCache}\index{Cache@{Cache}}
+
+
+The \hyperlink{classCache}{Cache} Class.  
+
+
+
+
+{\ttfamily \#include $<$cache.\+hpp$>$}
+
+\subsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCache_ab2fd62d030c2310489e64ed6a640c1a4}{Cache} (unsigned \+\_\+sz=0u)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCache}{Cache} Class Construcor. \end{DoxyCompactList}\item 
+\hyperlink{classCache_af8b171a6c49d88d3ba179477484b9d48}{$\sim$\+Cache} ()\hypertarget{classCache_af8b171a6c49d88d3ba179477484b9d48}{}\label{classCache_af8b171a6c49d88d3ba179477484b9d48}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classCache}{Cache} Class Destructor. \end{DoxyCompactList}\item 
+unsigned \hyperlink{classCache_aeba1d1861c728efecdf8774de51c77d0}{get\+Size} () const 
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classCache}{Cache}\textquotesingle{}s size. \end{DoxyCompactList}\item 
+bool \hyperlink{classCache_a6cae76d581d7c6c655652ed8c7a5afca}{get\+Value} (unsigned \+\_\+pos, std\+::string \&\+\_\+val) const 
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classCache}{Cache}\textquotesingle{}s value at some position. \end{DoxyCompactList}\item 
+bool \hyperlink{classCache_a02204c5cca523c17e51821f4a28f13cd}{set\+Value} (unsigned \+\_\+pos, std\+::string \+\_\+val)
+\begin{DoxyCompactList}\small\item\em Sets a value in a \hyperlink{classCache}{Cache}\textquotesingle{}s position. \end{DoxyCompactList}\item 
+void \hyperlink{classCache_adfb26258521f5063f045ff16e63555b8}{show} () const \hypertarget{classCache_adfb26258521f5063f045ff16e63555b8}{}\label{classCache_adfb26258521f5063f045ff16e63555b8}
+
+\begin{DoxyCompactList}\small\item\em Shows the \hyperlink{classCache}{Cache} content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Privados}
+\begin{DoxyCompactItemize}
+\item 
+unsigned \hyperlink{classCache_ace474de8dce358993886b1aa6c141c94}{m\+\_\+size}\hypertarget{classCache_ace474de8dce358993886b1aa6c141c94}{}\label{classCache_ace474de8dce358993886b1aa6c141c94}
+
+\begin{DoxyCompactList}\small\item\em The \hyperlink{classCache}{Cache}\textquotesingle{}s size. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classCache_abe6f69287b3b70e7c5fd908873a90739}{m\+\_\+memory}\hypertarget{classCache_abe6f69287b3b70e7c5fd908873a90739}{}\label{classCache_abe6f69287b3b70e7c5fd908873a90739}
+
+\begin{DoxyCompactList}\small\item\em The Memory (a vector of strings) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+The \hyperlink{classCache}{Cache} Class. 
+
+\subsection{Documentação dos Construtores \& Destrutor}
+\index{Cache@{Cache}!Cache@{Cache}}
+\index{Cache@{Cache}!Cache@{Cache}}
+\subsubsection[{\texorpdfstring{Cache(unsigned \+\_\+sz=0u)}{Cache(unsigned _sz=0u)}}]{\setlength{\rightskip}{0pt plus 5cm}Cache\+::\+Cache (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{\+\_\+sz = {\ttfamily 0u}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classCache_ab2fd62d030c2310489e64ed6a640c1a4}{}\label{classCache_ab2fd62d030c2310489e64ed6a640c1a4}
+
+
+\hyperlink{classCache}{Cache} Class Construcor. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \+\_\+sz} & The \hyperlink{classCache}{Cache}\textquotesingle{}s size \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+14 : \hyperlink{classCache_ace474de8dce358993886b1aa6c141c94}{m\_size}(\_sz), \hyperlink{classCache_abe6f69287b3b70e7c5fd908873a90739}{m\_memory}(\_sz, \textcolor{stringliteral}{"-"}) \{\}
+\end{DoxyCode}
+
+
+\subsection{Documentação dos métodos}
+\index{Cache@{Cache}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Cache@{Cache}}
+\subsubsection[{\texorpdfstring{get\+Size() const }{getSize() const }}]{\setlength{\rightskip}{0pt plus 5cm}unsigned Cache\+::get\+Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hypertarget{classCache_aeba1d1861c728efecdf8774de51c77d0}{}\label{classCache_aeba1d1861c728efecdf8774de51c77d0}
+
+
+Gets the \hyperlink{classCache}{Cache}\textquotesingle{}s size. 
+
+\begin{DoxyReturn}{Retorna}
+The \hyperlink{classCache}{Cache}\textquotesingle{}s size 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+20                               \{
+21     \textcolor{keywordflow}{return} \hyperlink{classCache_ace474de8dce358993886b1aa6c141c94}{m\_size};
+22 \}
+\end{DoxyCode}
+\index{Cache@{Cache}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!Cache@{Cache}}
+\subsubsection[{\texorpdfstring{get\+Value(unsigned \+\_\+pos, std\+::string \&\+\_\+val) const }{getValue(unsigned _pos, std::string &_val) const }}]{\setlength{\rightskip}{0pt plus 5cm}bool Cache\+::get\+Value (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{\+\_\+pos, }
+\item[{std\+::string \&}]{\+\_\+val}
+\end{DoxyParamCaption}
+) const}\hypertarget{classCache_a6cae76d581d7c6c655652ed8c7a5afca}{}\label{classCache_a6cae76d581d7c6c655652ed8c7a5afca}
+
+
+Gets the \hyperlink{classCache}{Cache}\textquotesingle{}s value at some position. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \+\_\+pos} & The position to look for \\
+\hline
+{\em \+\_\+val} & The variable to receive the value (by reference) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True if is filled, False otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+25                                                          \{
+26     \textcolor{comment}{// Verify if the \_pos is invalid or if isn't filled}
+27     \textcolor{keywordflow}{if} (\_pos >= \hyperlink{classCache_ace474de8dce358993886b1aa6c141c94}{m\_size})
+28         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+29 
+30     \_val = \hyperlink{classCache_abe6f69287b3b70e7c5fd908873a90739}{m\_memory}[\_pos];
+31     \textcolor{keywordflow}{return} \hyperlink{classCache_abe6f69287b3b70e7c5fd908873a90739}{m\_memory}[\_pos] != \textcolor{stringliteral}{"-"};
+32 \}
+\end{DoxyCode}
+\index{Cache@{Cache}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!Cache@{Cache}}
+\subsubsection[{\texorpdfstring{set\+Value(unsigned \+\_\+pos, std\+::string \+\_\+val)}{setValue(unsigned _pos, std::string _val)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Cache\+::set\+Value (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{\+\_\+pos, }
+\item[{std\+::string}]{\+\_\+val}
+\end{DoxyParamCaption}
+)}\hypertarget{classCache_a02204c5cca523c17e51821f4a28f13cd}{}\label{classCache_a02204c5cca523c17e51821f4a28f13cd}
+
+
+Sets a value in a \hyperlink{classCache}{Cache}\textquotesingle{}s position. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em \+\_\+pos} & The position to fit the value \\
+\hline
+{\em \+\_\+val} & The value to be inserted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+True if the value was successfully setted, False if not 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+35                                                   \{
+36     \textcolor{comment}{// Verify if the \_pos is invalid}
+37     \textcolor{keywordflow}{if} (\_pos >= \hyperlink{classCache_ace474de8dce358993886b1aa6c141c94}{m\_size})
+38         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+39 
+40     \hyperlink{classCache_abe6f69287b3b70e7c5fd908873a90739}{m\_memory}[\_pos] = \_val;
+41     \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+42 \}
+\end{DoxyCode}
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{cache_8hpp}{cache.\+hpp}\item 
+src/\hyperlink{cache_8cpp}{cache.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,119 @@
+\hypertarget{memory__mapping_8cpp}{}\section{Referência ao ficheiro src/memory\+\_\+mapping.cpp}
+\label{memory__mapping_8cpp}\index{src/memory\+\_\+mapping.\+cpp@{src/memory\+\_\+mapping.\+cpp}}
+
+
+Main File.  
+
+
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include \char`\"{}mapping\+\_\+simulator.\+hpp\char`\"{}}\\*
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{memory__mapping_8cpp_abf9e6b7e6f15df4b525a2e7705ba3089}{main} (int argc, char const $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em The main function thar runs the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Main File. 
+
+File with the main function 
+
+\subsection{Documentação das funções}
+\index{memory\+\_\+mapping.\+cpp@{memory\+\_\+mapping.\+cpp}!main@{main}}
+\index{main@{main}!memory\+\_\+mapping.\+cpp@{memory\+\_\+mapping.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char const $\ast$argv[])}{main(int argc, char const *argv[])}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char const $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\hypertarget{memory__mapping_8cpp_abf9e6b7e6f15df4b525a2e7705ba3089}{}\label{memory__mapping_8cpp_abf9e6b7e6f15df4b525a2e7705ba3089}
+
+
+The main function thar runs the program. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em argc} & The cli arguments counter \\
+\hline
+{\em argv} & The cli arguments values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+E\+X\+I\+T\+\_\+\+S\+U\+C\+E\+SS if all succeed, E\+X\+I\+T\+\_\+\+F\+A\+I\+L\+U\+RE otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+26                                        \{
+27     \textcolor{keyword}{auto} cache\_sz = 16u;
+28     \textcolor{keyword}{auto} max\_miss = 1.0;
+29     \textcolor{keywordtype}{int} choice    = 0;
+30     std::vector<std::string> addresses;
+31 
+32     \textcolor{keywordflow}{if} (argc > 2) \{
+33         \textcolor{comment}{// Input 1: File}
+34         std::string input\_file = argv[1];
+35         \textcolor{comment}{// Input 2: miss rate}
+36         max\_miss = std::stof(argv[2]);
+37         \textcolor{comment}{// Input 3: cache\_sz}
+38         \textcolor{keywordflow}{if} (argc > 3)
+39             cache\_sz = std::stoul(argv[3]);
+40         \textcolor{comment}{// Verify if the cache's size is a valid size}
+41         \textcolor{keywordflow}{if} (cache\_sz < 4)
+42             cache\_sz = 4;
+43 
+44         \textcolor{comment}{// Open the file}
+45         std::ifstream file(input\_file);
+46         \textcolor{comment}{// Verify if the file was successfully opened}
+47         \textcolor{keywordflow}{if} (!file.is\_open()) \{
+48             std::cerr << \textcolor{stringliteral}{"The file specified doens't exists"} << std::endl;
+49             \textcolor{keywordflow}{return} EXIT\_FAILURE;
+50         \}
+51 
+52         std::string line;
+53         \textcolor{comment}{// Copy the file addesses to a vector of strings}
+54         \textcolor{keywordflow}{while} (std::getline(file, line))
+55             \textcolor{keywordflow}{if} (line != \textcolor{stringliteral}{""})
+56                 addresses.push\_back(line);
+57     \} \textcolor{keywordflow}{else} \{
+58         std::cerr << \textcolor{stringliteral}{"Missing parameters"} << std::endl;
+59         \textcolor{keywordflow}{return} EXIT\_FAILURE;
+60     \}
+61 
+62     \textcolor{comment}{// Initializes the MappingSimulator class}
+63     \hyperlink{classMappingSimulator}{MappingSimulator} map(cache\_sz, max\_miss);
+64 
+65     std::cout << std::string(30, \textcolor{charliteral}{'-'}) << \textcolor{stringliteral}{"\(\backslash\)n"};
+66     std::cout << \textcolor{stringliteral}{"Memory Mapping Simulator"} << \textcolor{stringliteral}{"\(\backslash\)n"};
+67     std::cout << \textcolor{stringliteral}{"  >>> Maximum miss rate: "} << max\_miss * 100 << \textcolor{charliteral}{'%'} << \textcolor{stringliteral}{"\(\backslash\)n"};
+68     std::cout << \textcolor{stringliteral}{"  >>> Cache's size: "} << cache\_sz << \textcolor{stringliteral}{"\(\backslash\)n"};
+69     std::cout << std::string(30, \textcolor{charliteral}{'-'}) << \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)n"};
+70 
+71     \textcolor{comment}{// For each address in addresses, try to access him}
+72     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} address : addresses) \{
+73         std::cout << \textcolor{stringliteral}{"Accessing the element "} << address << std::endl;
+74         std::cout << \textcolor{stringliteral}{"Using "};
+75         map.access(address);
+76 
+77         \textcolor{comment}{// Show the current cache status on terminal}
+78         \textcolor{keywordflow}{do} \{
+79             std::cout << \textcolor{stringliteral}{">>> Show the current cache content? [1-Yes | 0-No] "};
+80             std::cin >> choice;
+81         \} \textcolor{keywordflow}{while} (choice != 0 && choice != 1);
+82         \textcolor{keywordflow}{if} (choice == 1) \{
+83             std::cout << std::endl << \textcolor{stringliteral}{">>> "};
+84             map.show();
+85         \}
+86 
+87         \textcolor{comment}{// Separator line}
+88         std::cout << \textcolor{stringliteral}{"\(\backslash\)n"} << std::string(80, \textcolor{charliteral}{'-'}) << \textcolor{stringliteral}{"\(\backslash\)n"};
+89     \}
+90 
+91     std::cout << \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)nExiting with Success...\(\backslash\)n"};
+92 
+93     \textcolor{keywordflow}{return} EXIT\_SUCCESS;
+94 \}
+\end{DoxyCode}

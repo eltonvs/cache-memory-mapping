@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Simulador de Associatividade Adaptativa: Código-Fonte de include/cache.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Simulador de Associatividade Adaptativa
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de acesso à memória cache que recebe como entrada os endereços a serem acessados</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Estruturas&#160;de&#160;dados</span></a></li>
+      <li class="current"><a href="files.html"><span>Ficheiros</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Localizar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;ficheiros</span></a></li>
+      <li><a href="globals.html"><span>Globais</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">cache.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="cache_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef _cache_hpp_</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define _cache_hpp_</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classCache.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCache.html">Cache</a> {</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; <span class="keyword">public</span>:</div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classCache.html#ab2fd62d030c2310489e64ed6a640c1a4">Cache</a>(<span class="keywordtype">unsigned</span> _sz = 0u);</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classCache.html#af8b171a6c49d88d3ba179477484b9d48">~Cache</a>();</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="classCache.html#aeba1d1861c728efecdf8774de51c77d0">getSize</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCache.html#a6cae76d581d7c6c655652ed8c7a5afca">getValue</a>(<span class="keywordtype">unsigned</span> _pos, std::string &amp;_val) <span class="keyword">const</span>;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classCache.html#a02204c5cca523c17e51821f4a28f13cd">setValue</a>(<span class="keywordtype">unsigned</span> _pos, std::string _val);</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classCache.html#adfb26258521f5063f045ff16e63555b8">show</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classCache.html#ace474de8dce358993886b1aa6c141c94">   59</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="classCache.html#ace474de8dce358993886b1aa6c141c94">m_size</a>;                    </div><div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classCache.html#abe6f69287b3b70e7c5fd908873a90739">   60</a></span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="classCache.html#abe6f69287b3b70e7c5fd908873a90739">m_memory</a>;  </div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classCache_html_aeba1d1861c728efecdf8774de51c77d0"><div class="ttname"><a href="classCache.html#aeba1d1861c728efecdf8774de51c77d0">Cache::getSize</a></div><div class="ttdeci">unsigned getSize() const </div><div class="ttdoc">Gets the Cache&amp;#39;s size. </div><div class="ttdef"><b>Definition:</b> cache.cpp:20</div></div>
+<div class="ttc" id="classCache_html_ace474de8dce358993886b1aa6c141c94"><div class="ttname"><a href="classCache.html#ace474de8dce358993886b1aa6c141c94">Cache::m_size</a></div><div class="ttdeci">unsigned m_size</div><div class="ttdoc">The Cache&amp;#39;s size. </div><div class="ttdef"><b>Definition:</b> cache.hpp:59</div></div>
+<div class="ttc" id="classCache_html_a6cae76d581d7c6c655652ed8c7a5afca"><div class="ttname"><a href="classCache.html#a6cae76d581d7c6c655652ed8c7a5afca">Cache::getValue</a></div><div class="ttdeci">bool getValue(unsigned _pos, std::string &amp;_val) const </div><div class="ttdoc">Gets the Cache&amp;#39;s value at some position. </div><div class="ttdef"><b>Definition:</b> cache.cpp:25</div></div>
+<div class="ttc" id="classCache_html"><div class="ttname"><a href="classCache.html">Cache</a></div><div class="ttdoc">The Cache Class. </div><div class="ttdef"><b>Definition:</b> cache.hpp:18</div></div>
+<div class="ttc" id="classCache_html_ab2fd62d030c2310489e64ed6a640c1a4"><div class="ttname"><a href="classCache.html#ab2fd62d030c2310489e64ed6a640c1a4">Cache::Cache</a></div><div class="ttdeci">Cache(unsigned _sz=0u)</div><div class="ttdoc">Cache Class Construcor. </div><div class="ttdef"><b>Definition:</b> cache.cpp:14</div></div>
+<div class="ttc" id="classCache_html_abe6f69287b3b70e7c5fd908873a90739"><div class="ttname"><a href="classCache.html#abe6f69287b3b70e7c5fd908873a90739">Cache::m_memory</a></div><div class="ttdeci">std::vector&lt; std::string &gt; m_memory</div><div class="ttdoc">The Memory (a vector of strings) </div><div class="ttdef"><b>Definition:</b> cache.hpp:60</div></div>
+<div class="ttc" id="classCache_html_af8b171a6c49d88d3ba179477484b9d48"><div class="ttname"><a href="classCache.html#af8b171a6c49d88d3ba179477484b9d48">Cache::~Cache</a></div><div class="ttdeci">~Cache()</div><div class="ttdoc">Cache Class Destructor. </div><div class="ttdef"><b>Definition:</b> cache.cpp:17</div></div>
+<div class="ttc" id="classCache_html_a02204c5cca523c17e51821f4a28f13cd"><div class="ttname"><a href="classCache.html#a02204c5cca523c17e51821f4a28f13cd">Cache::setValue</a></div><div class="ttdeci">bool setValue(unsigned _pos, std::string _val)</div><div class="ttdoc">Sets a value in a Cache&amp;#39;s position. </div><div class="ttdef"><b>Definition:</b> cache.cpp:35</div></div>
+<div class="ttc" id="classCache_html_adfb26258521f5063f045ff16e63555b8"><div class="ttname"><a href="classCache.html#adfb26258521f5063f045ff16e63555b8">Cache::show</a></div><div class="ttdeci">void show() const </div><div class="ttdoc">Shows the Cache content. </div><div class="ttdef"><b>Definition:</b> cache.cpp:45</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>

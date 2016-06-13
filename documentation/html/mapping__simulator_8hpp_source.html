@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.11"/>
+<title>Simulador de Associatividade Adaptativa: Código-Fonte de include/mapping_simulator.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Simulador de Associatividade Adaptativa
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Simulador de acesso à memória cache que recebe como entrada os endereços a serem acessados</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.11 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="annotated.html"><span>Estruturas&#160;de&#160;dados</span></a></li>
+      <li class="current"><a href="files.html"><span>Ficheiros</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Localizar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;ficheiros</span></a></li>
+      <li><a href="globals.html"><span>Globais</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">mapping_simulator.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mapping__simulator_8hpp.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifndef _mapping_simulator_hpp_</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define _mapping_simulator_hpp_</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cache_8hpp.html">cache.hpp</a>&quot;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classMappingSimulator.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMappingSimulator.html">MappingSimulator</a> {</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; <span class="keyword">public</span>:</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classMappingSimulator.html#a022509080806df80931c6de24775ca84">MappingSimulator</a>(<span class="keywordtype">unsigned</span> _cache_sz, <span class="keywordtype">double</span> _max_rate);</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classMappingSimulator.html#a9bafb8500fde4efe045ce74510fe7a7f">~MappingSimulator</a>();</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMappingSimulator.html#abe970a1be860a710964e25a193d737d9">access</a>(std::string _val);</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classMappingSimulator.html#ad8c16e3840b4228aa36d5606e6d7abf0">show</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; <span class="keyword">private</span>:</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classMappingSimulator.html#a35470460ee0e521cd9c5aa827a764901">search_val</a>(<span class="keywordtype">unsigned</span> _m, std::string _val, <span class="keywordtype">unsigned</span> &amp;_lpos) <span class="keyword">const</span>;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div><div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classMappingSimulator.html#a5a8a438a167ea70c9aee70635d0ae06a">   53</a></span>&#160;    <a class="code" href="classCache.html">Cache</a> <a class="code" href="classMappingSimulator.html#a5a8a438a167ea70c9aee70635d0ae06a">m_cache</a>;           </div><div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classMappingSimulator.html#a4636c2178965082cb9dbd78db7e98082">   54</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="classMappingSimulator.html#a4636c2178965082cb9dbd78db7e98082">m_max_miss_rate</a>;  </div><div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classMappingSimulator.html#af2b6441ab194ede9936224c4797c66f0">   55</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="classMappingSimulator.html#af2b6441ab194ede9936224c4797c66f0">m_miss_cnt</a>;     </div><div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classMappingSimulator.html#a8ab92a05774ab4a3ca35e2f299f58fc6">   56</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="classMappingSimulator.html#a8ab92a05774ab4a3ca35e2f299f58fc6">m_access_cnt</a>;   </div><div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classMappingSimulator.html#a77842beb2b039500a9d7459854fe4af1">   57</a></span>&#160;    <span class="keywordtype">unsigned</span> <a class="code" href="classMappingSimulator.html#a77842beb2b039500a9d7459854fe4af1">m_current_map</a>;  </div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classMappingSimulator_html_af2b6441ab194ede9936224c4797c66f0"><div class="ttname"><a href="classMappingSimulator.html#af2b6441ab194ede9936224c4797c66f0">MappingSimulator::m_miss_cnt</a></div><div class="ttdeci">unsigned m_miss_cnt</div><div class="ttdoc">The miss counter. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.hpp:55</div></div>
+<div class="ttc" id="classMappingSimulator_html_a022509080806df80931c6de24775ca84"><div class="ttname"><a href="classMappingSimulator.html#a022509080806df80931c6de24775ca84">MappingSimulator::MappingSimulator</a></div><div class="ttdeci">MappingSimulator(unsigned _cache_sz, double _max_rate)</div><div class="ttdoc">The MappingSimulator Constructor. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.cpp:14</div></div>
+<div class="ttc" id="classCache_html"><div class="ttname"><a href="classCache.html">Cache</a></div><div class="ttdoc">The Cache Class. </div><div class="ttdef"><b>Definition:</b> cache.hpp:18</div></div>
+<div class="ttc" id="classMappingSimulator_html_a8ab92a05774ab4a3ca35e2f299f58fc6"><div class="ttname"><a href="classMappingSimulator.html#a8ab92a05774ab4a3ca35e2f299f58fc6">MappingSimulator::m_access_cnt</a></div><div class="ttdeci">unsigned m_access_cnt</div><div class="ttdoc">The access counter. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.hpp:56</div></div>
+<div class="ttc" id="classMappingSimulator_html_a9bafb8500fde4efe045ce74510fe7a7f"><div class="ttname"><a href="classMappingSimulator.html#a9bafb8500fde4efe045ce74510fe7a7f">MappingSimulator::~MappingSimulator</a></div><div class="ttdeci">~MappingSimulator()</div><div class="ttdoc">The MappingSimulator Destructor. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.cpp:19</div></div>
+<div class="ttc" id="cache_8hpp_html"><div class="ttname"><a href="cache_8hpp.html">cache.hpp</a></div><div class="ttdoc">The Cache Memory Class. </div></div>
+<div class="ttc" id="classMappingSimulator_html_a4636c2178965082cb9dbd78db7e98082"><div class="ttname"><a href="classMappingSimulator.html#a4636c2178965082cb9dbd78db7e98082">MappingSimulator::m_max_miss_rate</a></div><div class="ttdeci">double m_max_miss_rate</div><div class="ttdoc">The maximum miss rate. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.hpp:54</div></div>
+<div class="ttc" id="classMappingSimulator_html_a5a8a438a167ea70c9aee70635d0ae06a"><div class="ttname"><a href="classMappingSimulator.html#a5a8a438a167ea70c9aee70635d0ae06a">MappingSimulator::m_cache</a></div><div class="ttdeci">Cache m_cache</div><div class="ttdoc">The Cache to be used. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.hpp:53</div></div>
+<div class="ttc" id="classMappingSimulator_html_a35470460ee0e521cd9c5aa827a764901"><div class="ttname"><a href="classMappingSimulator.html#a35470460ee0e521cd9c5aa827a764901">MappingSimulator::search_val</a></div><div class="ttdeci">int search_val(unsigned _m, std::string _val, unsigned &amp;_lpos) const </div><div class="ttdoc">Function to search a value on Cache. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.cpp:50</div></div>
+<div class="ttc" id="classMappingSimulator_html_ad8c16e3840b4228aa36d5606e6d7abf0"><div class="ttname"><a href="classMappingSimulator.html#ad8c16e3840b4228aa36d5606e6d7abf0">MappingSimulator::show</a></div><div class="ttdeci">void show() const </div><div class="ttdoc">Shows the Cache on console (using the default method) </div><div class="ttdef"><b>Definition:</b> mapping_simulator.cpp:45</div></div>
+<div class="ttc" id="classMappingSimulator_html"><div class="ttname"><a href="classMappingSimulator.html">MappingSimulator</a></div><div class="ttdoc">The Mapping Simulator Class. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.hpp:18</div></div>
+<div class="ttc" id="classMappingSimulator_html_a77842beb2b039500a9d7459854fe4af1"><div class="ttname"><a href="classMappingSimulator.html#a77842beb2b039500a9d7459854fe4af1">MappingSimulator::m_current_map</a></div><div class="ttdeci">unsigned m_current_map</div><div class="ttdoc">The current mapping function to be used. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.hpp:57</div></div>
+<div class="ttc" id="classMappingSimulator_html_abe970a1be860a710964e25a193d737d9"><div class="ttname"><a href="classMappingSimulator.html#abe970a1be860a710964e25a193d737d9">MappingSimulator::access</a></div><div class="ttdeci">void access(std::string _val)</div><div class="ttdoc">Function to access a value into the cache. </div><div class="ttdef"><b>Definition:</b> mapping_simulator.cpp:22</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.11
+</small></address>
+</body>
+</html>
