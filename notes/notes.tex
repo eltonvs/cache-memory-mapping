@@ -5,10 +5,21 @@
 \usepackage{indentfirst}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks = true,
+citecolor  = gray,
+linkcolor  = {blue!60!green}
+}
 
 % Creates \code tag to print inline code
 \definecolor{codegray}{gray}{0.9}
 \newcommand{\code}[1]{\colorbox{codegray}{\texttt{#1}}}
+
+% Creates the raw environment
+\newenvironment{raw}{\ttfamily}
 
 % Document Info
 \author{Elton de Souza Vieira\thanks{eltonviana@ufrn.edu.br || eltonviana.com}}
@@ -33,7 +44,9 @@
 \begin{document}
 \imprimircapa
 
-\chapter*{Introdução}
+\tableofcontents
+
+\chapter{Introdução}
 Descrição do trabalho e sua contextualização com a Arquitetura de Computadores
 Neste projeto, foi implementação de um Simulador de Associatividade Adaptativa que, dado uma lista de endereços no formato hexadecimal, tenta acessá-los na memória cache por 3 métodos diferentes (vistos em sala de aula): \textbf{Mapeamento Direto}, \textbf{Mapeamento Totalmente Associativo} e \textbf{Mapeamento Parcialmente Associativo}.
 
@@ -41,14 +54,14 @@ Neste projeto, foi implementação de um Simulador de Associatividade Adaptativa
 \item[Mapeamento Direto]
 A técnica de mapeamento direto consiste em acessar um endereço na memória utilizando congruência modular, isto é, caso a memória tenha $ n $ posições e o endereço seja $ x $, ele deve ser mapeado na posição $ x \bmod n $. Possuindo, assim, uma complexidade constante ($ \Theta (1) $).
 \item[Mapeamento Totalmente Associativo]
-Essa é a técnica mais ``trivial'', pois consiste em percorrer linearmente a cache à procura do endereço. Dessa forma, sua complexidade é dada por $ \Theta (n) $.
+Essa é a técnica mais ``trivial'', pois consiste em percorrer linearmente a cache à procura do endereço. Dessa forma, sua complexidade é dada por $ \mathcal{O} (n) $.
 \item[Mapeamento Parcialmente Associativo]
-Nesse método, há uma ``mistura'' entre o Mapeamento Totalmente Associativo e o Direto, pois a cache é particionada, formando assim um conjunto de ``pequenas caches'' de tamanhos menores. Assim, para fazer a busca de um elemento, é feito o cálculo de congruência modular entre o número de partições e então o elemento é procurado linearmente nesta seção menor, fazendo com o que a complexidade seja $ \Theta (n/k) $ sendo $ n $ o tamanho da cache e $ k $ o número de seções que a cache foi dividida.
+Nesse método, há uma ``mistura'' entre o Mapeamento Totalmente Associativo e o Direto, pois a cache é particionada, formando assim um conjunto de ``pequenas caches'' de tamanhos menores. Assim, para fazer a busca de um elemento, é feito o cálculo de congruência modular entre o número de partições e então o elemento é procurado linearmente nesta seção menor, fazendo com o que a complexidade seja $ \mathcal{O} (\lceil n/k \rceil) $ sendo $ n $ o tamanho da cache e $ k $ o número de seções que a cache foi dividida.
 \end{description}
 
 Neste simulador, quando a ``taxa de \textit{miss}'' (falhas na busca / número de buscas) é superior a um percentual $ x $ (informado pelo usuário), o tipo de mapeamento deve ser alterado. E a cada busca deve ser dada a opção de exibição do estado atual da memória cache.
 
-\chapter*{Solução Implementada}
+\chapter{Solução Implementada}
 O algoritmo foi implementado utilizando basicamente 2 classes, uma para a memória cache e outra para o simulador em si.
 A classe \code{Cache} consiste em um \code{std::vector} e uma variável para armazenar o seu tamanho. Seus construtor recebe apenas o seu tamanho como argumento e seus outros métodos são \code{getSize()}, \code{getValue()}, \code{setValue()} e \code{show()} que servem, respectivamente, para retornar o tamanho da cache, o valor armazenado em uma determinada posição, alterar o valor de uma posição e mostrar uma representação visual de seu conteúdo no console.
 
@@ -62,17 +75,18 @@ Os casos poderiam ser divididos como:
 \item Houve um \textit{miss} e não existem mais espaços disponíveis na área de inserção: Sendo $ ini $ = posição de início da área de inserção , $ area $ = tamanho da área de inserção e $ cont $ = contador de acessos à memória , o algoritmo retorna a posição $ ini + (cont \bmod area) $. Pois assim, se a área for de tamanho 4, e iniciar no 0, e já ocorreram 4 inserções, o próximo elemento a ser substituído da cache é o primeiro. (Com essa solução, pode não haver uma precisão muito alta, no entanto há uma economia na memória utilizada).
 \end{itemize}
 
-\section*{Organização do Código}
+\section{Organização do Código}
 O projeto foi estruturado em 5 pastas, são elas:
 \begin{itemize}
 \item \textbf{bin}:           Onde os arquivos executáveis/binários são salvos.
 \item \textbf{build}:         Onde os arquivos objeto são salvos.
+\item \textbf{data}:          Armazena os arquivos de entrada (conjuntos de endereços).
 \item \textbf{documentation}: Contém todos os arquivos da documentação gerada pelo Doxygen.
 \item \textbf{includes}:      Estão localizados todos os cabeçalhos (\textit{headers}) das classes e funções.
 \item \textbf{src}:           Código fonte do projeto e a implementação dos métodos das classes e das funções.
 \end{itemize}
 
-\section*{Execução do Código}
+\section{Execução do Código}
 Para compilar esse programa, tudo o que você precisa fazer é digitar:
 
 \code{\textdollar make clean}
@@ -85,37 +99,74 @@ E para executá-lo:
 
 Onde o \code{arquivo\_endereços} representa um arquivo com todos os endereços a serem buscados pelo programa (um por linha), a \code{taxa\_de\_miss} é o percentual (em ponto flutuate) que definirá a troca do tipo de mapeamento e o \code{tamanho\_da\_cache} é um parâmetro opcional para definir o tamanho da memória cache (no mínimo 4 posições), caso não seja informado, ele assumirá um valor padrão de 16 posições.
 
-\newpage
 
-\subsection*{Exemplo de um arquivo de entrada válido}
+\chapter{Análise de Resultados}
+Para fazer a análise, o algoritmo foi modificado, de forma a evitar que houvesse a troca de tipo de mapeamento.
+Foi utilizado como entrada um arquivo com 184 endereços de memória ordenados randomicamente e uma memória cache de 64 posições (para que a comparação pudesse ser realizada, foi utilizada a mesma entrada em todas as execuções).
 
+Dessa forma, foram obtidos os seguintes resultados relacionados à ``taxa de \textit{miss}'' de cada algoritmo:
+
+\begin{description}
+\item[Mapeamento Direto]
+A ``taxa de \textit{miss}'' final para o arquivo de entrada foi de aproximadamente $ 23.913\% $
+\item[Mapeamento Parcialmente Associtivo]
+Para esse tipo de mapeamento, foi obtida uma ``taxa de \textit{miss}'' na ordem de $ 10.7486\% $
+\item[Mapeamento Totalmente Associativo]
+Utilizando essa técnica, a ``taxa de \textit{miss}'' obtida foi de $ 7.6087\% $
+\end{description}
+
+O algoritmo foi, novamente, modificado de forma que nenhuma informação fosse escrita no terminal (eliminando assim o tempo decorrido para escrita de informações na tela) e foi adicionado um laço para que o algoritmo fosse executado 100,000 vezes seguidas e gerando o tempo de execução médio (utilizando o cálculo do Desvio Padrão).
+
+Dessa forma, ao fazer a análise dos algoritmos por tempo de execução, os resultados obtidos foram:
+
+\begin{description}
+\item[Mapeamento Direto]
+Utilizando apenas esse tipo de mapeamente, obtivemos um tempo médio de execução de 58.6573 microssegundos.
+\item[Mapeamento Parcialmente Associativo]
+Para esse tipo de mapeamento, o tempo médio de execução foi de 84.2167 microssegundos.
+\item[Mapeamento Totalmente Associativo]
+Nesse tipo de mapeamento, o tempo médio de execução obtido foi de 174.063 microssegundos.
+\end{description}
+
+Analisando os resultados obtidos, podemos perceber que a maior ``taxa de \textit{miss}'' foi encontrada no Mapeamento Direto (havendo um ``empate'' entre os mapeamentos associativos) que pode ser justificado por cada elemento buscado ter apenas uma posição possível para ser acessada na memória (um número congruente a ele que esteja entre 0 e o tamanho de memória).
+
+No entanto, quando comparamos o tempo de execução, o Mapeamento Direto se sobressaiu, possuindo um tempo médio de execução na casa dos 60 microssegundos, justificado por sua complexidade ser $ \Theta (1) $ (constante). Já o mapeamento Parcialmente Associativo obteve um tempo médio próximo ao obtido pelo Mapeamento Direto, com seus 84 microssegundos, devido a sua complexidade de acesso ser $ \mathcal{O} (\lceil n/k \rceil) $.
+Na última posição ficou o Mapeamento Totalmente Associativo, resultado esse já esperado tendo em vista a sua complexidade $ \mathcal{O} (n) $, com o tempo na faixa de 174 microssegundos.
+
+
+\chapter{Conclusão}
+Após a uma análise dos resultados obtidos, pode-se concluir que, todos os tipos de mapeamento (direto, totalmente associativo e parcialmente associativo) possuem suas vantagens e desvantagens.
+
+No caso do Mapeamento Direto, a vantagem é o tempo de acesso (e complexidade), no entanto, como a sua busca possui complexidade constante (pois olha em apenas um endereço) acaba por ter uma maior taxa de miss, possuindo assim um menor aproveitamento da memória.
+
+O Mapeamento Totalmente Associativo é exatamente o oposto do Mapeamento Direto, pois consegue aproveitar a memória ao máximo e, por conta disso, o tempo de execução fica debilitado.
+
+De acordo com as execuções feitas, o que possui um melhor equilíbrio entre o tempo de execução e o aproveitamento de memória é o Mapeamento Parcialmente Associativo, pois mescla características do Mapeamento Direto (congruência modular para diminuir o espaço de busca) e do Totalmente Asssociativo (busca linear em várias posições de memória).
+
+Portanto, pode-se concluir que, em termos gerais, o Mapeamento que possui o melhor equilíbrio entre tempo de acesso e \textit{miss rate} é o \textbf{Mapeamento Parcialmente Associativo}, no entanto, ``cada caso é um caso'' e, dependendo do projeto, pode ser que um outro tipo de mapeamento se enquadre melhor, necessitando de uma análise individual.
+
+
+\begin{anexos}
+\chapter{Exemplo de Arquivo de Entrada}
+
+\begin{raw}
 \noindent
-input.dat
+\texttt{0x0E}\\
+\texttt{0xED}\\
+\texttt{0x39}\\
+\texttt{0x39}\\
+\texttt{0xAF}\\
+\texttt{0x34}\\
+\texttt{0x3F}\\
+\texttt{0x39}\\
+\texttt{0xED}\\
+\texttt{0x3F}\\
+\texttt{0x45}\\
+\texttt{0x13}\\
+\texttt{0x3F}\\
+\texttt{0xAF}
+\end{raw}
 
-\begin{lstlisting}
-0x0E
-0xED
-0x39
-0x39
-0xAF
-0x34
-0x3F
-0x39
-0xED
-0x3F
-0x45
-0x13
-0x3F
-0xAF
-\end{lstlisting}
-
-\chapter*{Análise de Resultados}
-Resultados de simulação, tempo, área e demais aspectos a serem considerados devem ser reportados e analisados. Gráficos de análise, como barras, pizza, dentre outros podem (e devem) ser utilizados para auxiliar na análise dos resultados.
-
-\chapter*{Conclusão}
-Breve descrição do que foi implementado com análise, também breve, dos resultados.
-
-\chapter*{Referências}
-Referências Bibliográficas
+\end{anexos}
 
 \end{document}
